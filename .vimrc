@@ -6,10 +6,6 @@ set tabstop=4
 set expandtab
 set softtabstop=4
 
-" Disable the F1 help key
-map <F1> <Esc>
-imap <F1> <Esc>
-
 " http://vim.wikia.com/wiki/Move_cursor_by_display_lines_when_wrapping
 nnoremap <silent> j gj
 nnoremap <silent> k gk
@@ -48,8 +44,8 @@ set hidden
 set complete+=k
 
 if has("gui_running")
-    " colorscheme breeze 
-    colorscheme idleFingers
+    colorscheme breeze 
+    "colorscheme idleFingers
     set antialias
 else
     colorscheme delek
@@ -95,7 +91,7 @@ set guioptions-=T
 set ruler
 
 "don't highlight searches
-set nohls
+set hls
 
 "Gui tabs only show the filename
 set guitablabel=%t
