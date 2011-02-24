@@ -77,9 +77,9 @@ nmap <C-D> orequire 'ruby-debug'; debuggeert one character
 noremap <C-i> i<space><esc>r
 
 ",t opens fuzzy file, ,vt and ,ht open with vertical or horiz split
-map <silent> <leader>t :FufFile **/<CR>
-map <silent> <leader>vt :vnew<CR>:FufFile **/<CR>
-map <silent> <leader>ht :new<CR>:FufFile **/<CR>
+"map <silent> <leader>t :FufFile **/<CR>
+"map <silent> <leader>vt :vnew<CR>:FufFile **/<CR>
+"map <silent> <leader>ht :new<CR>:FufFile **/<CR>
 
 "try this again
 set autoindent
