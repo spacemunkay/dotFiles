@@ -1,11 +1,14 @@
 "don't be compatible with old vi
 set nocompatible
 
+" virtual tabstops using spaces
 set shiftwidth=4
 set tabstop=4
-set expandtab
 set softtabstop=4
+set expandtab
 
+" set line numbers
+set number
 " http://vim.wikia.com/wiki/Move_cursor_by_display_lines_when_wrapping
 nnoremap <silent> j gj
 nnoremap <silent> k gk
@@ -35,6 +38,8 @@ set hidden
 nnoremap ' `
 nnoremap ` '
 let mapleader = ","
+let g:mapleader = ","
+
 set history=1000
 runtime macros/matchit.vim
 
@@ -44,7 +49,10 @@ set hidden
 set complete+=k
 
 if has("gui_running")
-    colorscheme breeze 
+
+    set transparency=6
+    colorscheme anotherdark
+    "colorscheme breeze 
     "colorscheme idleFingers
     set antialias
 else
@@ -81,6 +89,11 @@ noremap <C-i> i<space><esc>r
 "map <silent> <leader>vt :vnew<CR>:FufFile **/<CR>
 "map <silent> <leader>ht :new<CR>:FufFile **/<CR>
 
+map <silent> <leader>r :NERDTree<CR>:CommandTFlush<CR>
+
+"toggle tab highlights
+map <silent> <Leader>v :IndentGuidesToggle<CR>
+
 "try this again
 set autoindent
 
@@ -104,7 +117,7 @@ function! InsertTabWrapper()
       else
           return "\<c-p>"
       endif
-endfunction 
+endfunction
 
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 
@@ -183,6 +196,15 @@ endif
 autocmd BufRead *.as set filetype=actionscript
 autocmd BufRead *.mxml set filetype=mxml
 
+"source *.ino, *.pde as arduino files
+autocmd BufRead *.ino set filetype=arduino
+autocmd BufRead *.pde set filetype=arduino
+
+"open nerdtree file browser on startup
+autocmd VimEnter * NERDTree
+"open nerdtree with every new tab
+autocmd BufEnter * NERDTreeMirror
+
 " http://tim.theenchanter.com/2008/07/crontab-temp-file-must-be-edited-in.html ?
 set backupskip=/tmp/*,/private/tmp/*" 
 
@@ -190,3 +212,39 @@ set backupskip=/tmp/*,/private/tmp/*"
 let g:ConqueTerm_CWInsert = 1
 
 command PythonShell :set nolist | ConqueTermSplit ipython
+
+
+"highlight EOL whitespace
+highlight EOLWS ctermbg=red guibg=red
+"autocmd BufWinEnter * syn clear EOLWS | syn match EOLWS excludenl /\s\+$/
+"autocmd InsertEnter * syn clear EOLWS | syn match EOLWS excludenl /\s\+\%#\@!$/
+"autocmd InsertLeave * syn clear EOLWS | syn match EOLWS excludenl /\s\+$/
+autocmd BufWinEnter * syn clear EOLWS | syn match EOLWS excludenl /\s$/
+autocmd InsertEnter * syn clear EOLWS | syn match EOLWS excludenl /\s\%#\@<!$/
+autocmd InsertLeave * syn clear EOLWS | syn match EOLWS excludenl /\s$/
+
+"Highlight column 80
+set colorcolumn=80
+highlight ColorColumn ctermbg=DarkGray guibg=#444555
+
+"highlight indents on open and new tab
+"autocmd VimEnter * IndentGuidesEnable
+"autocmd BufEnter * IndentGuidesEnable
+
+" allow toggling between local and default mode
+function TabToggle()
+  if &expandtab
+    set shiftwidth=8
+    set softtabstop=0
+    set noexpandtab
+  else
+    set shiftwidth=4
+    set softtabstop=4
+    set tabstop=4
+    set expandtab
+  endif
+endfunction
+nmap <silent> <leader>s :execute TabToggle()<CR>
+
+"To use pathogen bundler
+call pathogen#infect()
