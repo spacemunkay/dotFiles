@@ -1,0 +1,28 @@
+#Aliases
+alias gc='git checkout'
+alias gm='git commit -m'
+alias gma='git commit -a -m'
+alias ga='git add'
+alias gs='git status'
+alias gd='git diff'
+alias gdc='git diff --cached'
+alias grm='git rm'
+alias gpush='git push'
+alias gpull='git pull'
+alias ls='ls -la'
+
+vc-nuke () {        vagrant destroy      && \
+                    vagrant up chef-server     && \
+                    ./init-chef-server.sh      && \
+                    ./update-chef-server.sh    && \
+                    knife data bag create keys && \
+                    ruby -rjson -e "File.open('github.json','w') do |f| f << {:id => :github, :id_rsa => File.read('/Users/some_dude3/.ssh/github').to_s}.to_json end" && \
+                    knife data bag from file keys github.json && \
+                    rm github.json; }
+
+vc-up () { vagrant up $1 && knife bootstrap $1 -x vagrant -d ubuntu12.04-gems --sudo -N $1 -i ~/.ssh/vagrant -E dev-appliance -r "role[chef-client]"; }
+
+vc-purge () { vagrant destroy $1 -f && knife client delete $1 -y && knife node delete $1 -y; }
+
+vc-log () { vagrant ssh $1 -c "tail -f /var/log/chef/client.log"; }
+
