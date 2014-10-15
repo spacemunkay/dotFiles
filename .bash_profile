@@ -10,3 +10,4 @@ function parse_git_branch {
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 #Set Bash Prompt Information and colors
 PS1='[$(date +%H:%M) \[\033[0;36m\]\u \[\033[0;33m\]\w \[\033[0;31m\]$(__git_ps1 "(%s)")\[\033[0m\]]\$ '
+export HISTTIMEFORMAT='%F %T %t'
