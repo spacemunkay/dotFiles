@@ -32,11 +32,16 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'altercation/vim-colors-solarized'
 
 Plugin 'scrooloose/nerdtree'
-"Plugin 'scrooloose/syntastic'
-"Plugin 'airblade/vim-gitgutter'
+Plugin 'scrooloose/syntastic'             "Language syntax checking
+Plugin 'airblade/vim-gitgutter'           "Use '<leader>g' to show git diff
+Plugin 'nathanaelkane/vim-indent-guides'  "Use '<leader>ig' to highlight indentation
+Plugin 'kien/ctrlp.vim'                   "Fuzzy file searching. Use '<leader>t' to search filename
+Plugin 'rking/ag.vim'                     "Ack, silver searcher.  Use '<leader>a' to search term.
+Plugin 'vim-scripts/matchit.zip'          "Use '%' to move cursor between block openings and endings
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
+
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
@@ -119,14 +124,15 @@ noremap <C-l> <C-w>l
 nnoremap <leader>d :NERDTreeToggle<CR>
 nnoremap <leader>f :NERDTreeFind<CR>
 "noremap <leader>l :Align
-"nnoremap <leader>a :Ag<space>
+"Ack search
+nnoremap <leader>a :Ag<space>
 "nnoremap <leader>b :CtrlPBuffer<CR>
 "let g:gitgutter_enabled = 0
-"nnoremap <leader>t :CtrlP<CR>
-"nnoremap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
+nnoremap <leader>t :CtrlP<CR>
+nnoremap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
 "nnoremap <leader>] :TagbarToggle<CR>
 "nnoremap <leader><space> :call whitespace#strip_trailing()<CR>
-"nnoremap <leader>g :GitGutterToggle<CR>
+nnoremap <leader>g :GitGutterToggle<CR>
 "noremap <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 
 " in case you forgot to sudo
