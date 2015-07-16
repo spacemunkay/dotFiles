@@ -1,6 +1,24 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+" ----------- Custom Functions -------------------
+
+" thanks to http://vimcasts.org/e/4
+function! StripTrailingWhitespace()
+  let previous_search=@/
+  let previous_cursor_line=line('.')
+  let previous_cursor_column=col('.')
+  %s/\s\+$//e
+  let @/=previous_search
+  call cursor(previous_cursor_line, previous_cursor_column)
+endfunction
+
+" strip trailing whitespace on Ruby buffer saves
+augroup whitespace
+  autocmd BufWritePre *.rb call StripTrailingWhitespace()
+augroup END
+
+
 " enable syntax highlighting
 syntax enable
 
@@ -131,7 +149,7 @@ nnoremap <leader>a :Ag<space>
 nnoremap <leader>t :CtrlP<CR>
 nnoremap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
 "nnoremap <leader>] :TagbarToggle<CR>
-"nnoremap <leader><space> :call whitespace#strip_trailing()<CR>
+nnoremap <leader><space> :call StripTrailingWhitespace()<CR>
 nnoremap <leader>g :GitGutterToggle<CR>
 "noremap <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 
@@ -157,7 +175,7 @@ let NERDTreeShowHidden=1 "show dot files and hidden files
 autocmd VimResized * :wincmd =
 
 " Don't copy the contents of an overwritten selection.
-"vnoremap p "_dP
+vnoremap p "_dP
 
 " ----------- Language settings -------------------
 
@@ -190,6 +208,3 @@ autocmd BufRead,BufNewFile *.md set spell
 
 " ----------- ColorScheme -------------------
 colorscheme solarized
-
-let g:NERDTreeMapActivateNode = ''
-let g:NERDTreeMapOpenInTab = 'o'
