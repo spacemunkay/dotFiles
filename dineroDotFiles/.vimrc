@@ -153,6 +153,12 @@ nnoremap <leader><space> :call StripTrailingWhitespace()<CR>
 nnoremap <leader>g :GitGutterToggle<CR>
 "noremap <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 
+"easy save
+nnoremap <leader>w :w<CR>
+
+"escape from insert w/ jk
+:imap jk <Esc>
+
 " in case you forgot to sudo
 cnoremap w!! %!sudo tee > /dev/null %
 
