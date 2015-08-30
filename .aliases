@@ -11,6 +11,10 @@ alias gpush='git push'
 alias gpull='git pull'
 alias ls='ls -la'
 
+alias dm='docker-machine'
+alias dc='docker-compose'
+alias dcrw='docker-compose run web'
+
 vc-nuke () {        vagrant destroy      && \
                     vagrant up chef-server     && \
                     ./init-chef-server.sh      && \
