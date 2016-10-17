@@ -16,6 +16,14 @@ alias dm='docker-machine'
 alias dc='docker-compose'
 alias dcrw='docker-compose run web'
 
+#display full path of file and copy to OSX clipboard
+fpath () {
+  PHYS_DIR=`pwd -P`
+    RESULT=$PHYS_DIR/$1
+    echo -n $RESULT | pbcopy
+    echo $RESULT
+}
+
 vc-nuke () {        vagrant destroy      && \
                     vagrant up chef-server     && \
                     ./init-chef-server.sh      && \
