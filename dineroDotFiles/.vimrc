@@ -164,6 +164,10 @@ cnoremap w!! %!sudo tee > /dev/null %
 
 " ----------- Plugin settings -------------------
 
+
+" Syntastic Syntax checker, use ruby 2.1.5 for checking
+let g:syntastic_ruby_mri_exec= '~/.rvm/rubies/ruby-2.1.5/bin/ruby'
+
 "let g:ctrlp_match_window = 'order:ttb,max:20'
 "let g:NERDSpaceDelims=1 "Adds extra space For NERD commenter
 let NERDTreeShowHidden=1 "show dot files and hidden files
