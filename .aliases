@@ -9,6 +9,7 @@ alias gdc='git diff --cached'
 alias grm='git rm'
 alias gpush='git push'
 alias gpull='git pull'
+alias gpr='git pull --rebase origin'
 alias ls='ls -la'
 
 alias dm='docker-machine'
